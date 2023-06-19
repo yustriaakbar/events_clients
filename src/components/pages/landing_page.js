@@ -3,7 +3,6 @@ import axios from 'axios';
 import Aos from 'aos';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
-import SectionQueue from '../layout/section_queue';
 import SectionHero from '../layout/section_hero';
 import Table from '../layout/table';
 
@@ -38,7 +37,7 @@ const LandingPage = () => {
                         <div className="row gx-0">
                             <div className="col-lg-12 d-flex flex-column items-center" data-aos="fade-up" data-aos-delay="300">
                                 <div className="py-1 px-3">
-                                <input type="text" class="form-control" placeholder="Cari Kegiatan" 
+                                <input type="text" className="form-control" placeholder="Cari Kegiatan" 
                                     onChange={(e) => setQuery(e.target.value.toLowerCase())}/>
                                     {<Table data={events} />}
                                 </div>

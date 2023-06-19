@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import axios from 'axios';
+import ResultQueue from './result_queue';
+import axios from 'axios'
 
 const QueueCheck = () => {
     const [nik, setNik] = useState("");
+    const [participant, setParticipant] = useState([]);
     const registerParticipant = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:3001/api/participants/nik`, { nik });
+            const response = await axios.post(`http://localhost:3001/api/participants/nik`, { nik });
+            setParticipant(response.data.data);
         } catch (error) {
             console.log(error);
         }
@@ -38,10 +41,15 @@ const QueueCheck = () => {
                                                 <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Submit"/>
                                             </div>
                                     </form>
-                                    <br />
-                                    <br />
+                                    <br/><br/>
                                     <a href="/"> Kembali ke halaman depan</a>
-                                </div>
+                                    <br/><br/>
+                                    {
+                                        participant.full_name != null
+                                        ?  <ResultQueue participant={participant} />
+                                        :  <div></div>
+                                    }
+                                </div>                                
                             </div>
                         </div>
                     </div>
