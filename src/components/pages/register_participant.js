@@ -19,6 +19,11 @@ const RegisterParticipant = () => {
     const { id } = useParams();
     const [error, setError] = useState({});
 
+    const handleNikChange = event => {
+        const limit = 16;
+        setNik(event.target.value.slice(0, limit));
+    };
+
     useEffect(() => {
         getEventById();
     }, []);
@@ -123,7 +128,6 @@ const RegisterParticipant = () => {
                         </div>
                     </div>
 
-
                     <div className="row mt-3">
                         <div className="col-md-6">
                             <div className="form-group">
@@ -132,8 +136,7 @@ const RegisterParticipant = () => {
                                     type="number"
                                     className="form-control"
                                     placeholder="Enter NIK"
-                                    value={nik} onChange={(e) => setNik(e.target.value)}
-                                    maxLength="16" />
+                                    value={nik} onChange={handleNikChange} />
                                 {error.nik && <small className='text-danger'>{error.nik}</small>}
                             </div>
                         </div>
